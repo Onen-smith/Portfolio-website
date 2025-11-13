@@ -176,3 +176,45 @@ const observer = new MutationObserver(() => {
 });
 
 observer.observe(lightboxElement, { attributes: true, attributeFilter: ['class'] });
+
+// Enable swipe functionality for slideshows on mobile
+document.querySelectorAll('.slideshow').forEach(slideshow => {
+    let startX = 0;
+    let currentIndex = 0;
+    const slides = slideshow.querySelectorAll('.slide');
+
+    // Helper: Show slide by index
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    // Touch start
+    slideshow.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    // Touch end
+    slideshow.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diffX = startX - endX;
+
+        if (Math.abs(diffX) > 50) { // minimum swipe distance
+            if (diffX > 0) {
+                // Swipe left → next
+                currentIndex = (currentIndex + 1) % slides.length;
+            } else {
+                // Swipe right → previous
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            }
+            showSlide(currentIndex);
+            // Auto-slide every 5 seconds
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }, 5000);
+
+        }
+    });
+});
