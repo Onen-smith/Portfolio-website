@@ -192,6 +192,11 @@ footer{background:#1e3a8a;color:white;padding:30px 0;text-align:center;}
   color: white;
   cursor: pointer;
 }
+/* Hide logo when lightbox is visible */
+.lightbox.active ~ .logo {
+  display: none;
+}
+
 
 * Slideshow Container */
 .slideshow-container {
@@ -491,4 +496,8 @@ body.contact-page {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateX(-50%) translateY(20px); }
   to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+/* Hide logo when lightbox is open */
+body.lightbox-open .logo-circle {
+  display: none;
 }
