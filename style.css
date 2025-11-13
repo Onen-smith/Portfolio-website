@@ -1,0 +1,494 @@
+/* style.css */
+
+/* Header with slideshow and overlay */
+header {
+    position: relative;
+    color: #ffffff;
+    padding: 60px 0;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+    background-color: #0f172a; /* deep navy base */
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(37, 99, 235, 0.5); /* translucent blue overlay */
+    z-index: 0;
+}
+
+header .container {
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+header p {
+    font-size: 18px;
+    color: #e0f2fe;
+    opacity: 0.9;
+}
+
+/* About Section */
+#about {
+    background: white;
+    color: #0f172a;
+    padding: 60px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+#about h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #01050d;
+}
+
+#about p {
+    max-width: 800px;
+    margin: 0 auto 15px auto;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #334155;
+}
+
+/* General Styles */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:'Inter', sans-serif;
+    background:#f8fafc;
+    color:#111;
+    line-height:1.6;
+}
+
+/* Floating Logo Circle */
+.logo-circle {
+  position: fixed;
+  top: 20px;
+  right: 20px; /* or left: 20px if you prefer */
+  z-index: 2000;
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* ensures image stays inside circle */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image inside the circle */
+.logo-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill the circle perfectly */
+  border-radius: 50%;
+}
+
+/* Hover effect */
+.logo-circle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+
+.container{width:90%;max-width:1000px;margin:0 auto;padding:40px 0;}
+a{text-decoration:none;color:#2563eb;}
+nav{background:white;box-shadow:0 2px 5px rgba(0,0,0,0.05);}
+nav ul{display:flex;justify-content:center;list-style:none;}
+nav ul li{margin:0 20px;}
+nav ul li a{display:block;padding:15px 0;font-weight:600;}
+nav ul li a:hover{color:#1d4ed8;}
+section{padding:60px 0;}
+section h2{font-size:28px;margin-bottom:20px;color:#0f172a;text-align:center;}
+.portfolio-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.portfolio-items .item{background:white;padding:15px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.05);text-align:center;transition:transform 0.3s ease, box-shadow 0.3s ease;}
+.portfolio-items .item:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.12);}
+.portfolio-items img{width:100%;border-radius:10px;margin-bottom:12px;}
+.portfolio-items h3{margin-bottom:8px;color:#2563eb;}
+.portfolio-items p{font-size:15px;opacity:0.85;}
+.experience-item,.education-item{background:white;margin-bottom:20px;padding:20px;border-left:4px solid #2563eb;border-radius:8px;}
+.experience-item h3,.education-item h3{margin-bottom:6px;color:#111827;}
+.experience-item span,.education-item span{font-size:14px;color:#6b7280;}
+.experience-item p{margin-top:8px;opacity:0.85;}
+.skill{margin-bottom:15px;}
+.skill span{display:block;margin-bottom:6px;font-weight:600;}
+.skill-bar{height:12px;background:#2563eb;border-radius:8px;width:0;transition:width 1s ease-in-out;}
+footer{background:#1e3a8a;color:white;padding:30px 0;text-align:center;}
+@media(max-width:768px){
+    nav ul{flex-direction:column;}
+    nav ul li{margin:5px 0;}
+    header h1{font-size:32px;}
+    header p{font-size:16px;}
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* Navigation buttons */
+.lightbox .prev,
+.lightbox .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: rgba(0,0,0,0.4);
+}
+
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.lightbox .prev { left: 30px; }
+.lightbox .next { right: 30px; }
+
+/* Close button */
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+* Slideshow Container */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Individual slideshow wrapper */
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+/* Images */
+.slideshow .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Active image */
+.slideshow .slide.active {
+  opacity: 1;
+}
+/* Passions Section */
+.passions-container {
+    background: white;
+    color: #0f172a;
+    padding: 60px 0;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.passions-container h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: black;
+}
+
+.passions-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.passions-content h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #1e40af;
+    text-align: center;
+}
+
+.passions-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #1e293b;
+}
+
+.passions-content li {
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media(max-width: 768px) {
+    .passions-content {
+        flex-direction: column;
+    }
+}
+
+/* Contact Form Styling */
+.contact-form {
+    background: white;
+    padding: 50px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin: 40px auto;
+    max-width: 600px;
+}
+
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1e3a8a;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form label {
+    font-weight: 600;
+    color: #101217;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+}
+
+.contact-form button {
+    background: #1e3a8a;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: #1e40af;
+}
+
+/* Contact Page */
+body.contact-page {
+    background: #f9fafb;
+    color: #0f172a;
+}
+
+.container.contact {
+    background: white;
+    color: #0f172a;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* Contact Header */
+.contact-header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    color: #ffffff;
+}
+
+.contact-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.contact-header p {
+    font-size: 18px;
+    opacity: 0.95;
+}
+
+/* Contact Info */
+.contact-info h2 {
+    color: #2563eb;
+    margin-bottom: 15px;
+}
+
+/* Contact Section */
+.contact-info {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.contact-info h2 {
+    color: #2563eb;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 16px;
+    margin: 6px 0;
+    color: #0f172a;
+}
+
+.contact-info a {
+    color: #2563eb;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Social Media Icons */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: #f1f5f9;
+    color: white;
+    font-size: 22px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+/* Default platform colors */
+.social-links a[title="YouTube"] {
+    background: #ff0000;
+}
+
+.social-links a[title="Instagram"] {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.social-links a[title="X (Twitter)"] {
+    background: #000000;
+}
+
+.social-links a[title="TikTok"] {
+    background: linear-gradient(135deg, #25f4ee, #000000, #fe2c55);
+}
+
+.social-links a[title="Facebook"] {
+    background: #1877f2;
+}
+
+.social-links a[title="LinkedIn"] {
+    background: #0077b5;
+}
+
+/* Hover effect — subtle lift */
+.social-links a:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.Ending-page a{
+    color: #e0f2fe;
+}
+
+/* Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: linear-gradient(135deg, #007bff, #00d4ff);
+  color: white;
+  border: none;
+  outline: none;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  display: none; /* hidden by default */
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Glow and lift when hovered */
+#backToTop:hover {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.9);
+}
+
+/* Optional: smooth fade-in */
+#backToTop.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
