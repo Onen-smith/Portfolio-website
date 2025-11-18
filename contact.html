@@ -13,36 +13,62 @@
 
 </head>
 <body>
-    <div class="logo-circle">
-  <img src="images/Emmancin.png" alt="Company Logo">
-</div>
-
-
+    
 <header>
-    <div class="container">
+    <div class="site-name">EMMANUEL ONEN<span class="reg">&reg;</span></div>
+
+     <div class="container">
         <h1>Contact Me</h1>
         <p>Get in touch for projects or collaborations</p>
     </div>
+        <!-- Background slideshow -->
+    <!-- Slideshow -->
+    <div class="header-slideshow">
+        <img src="images/NEF_2054.jpg" class="header-slide active" style="object-position: 50% 20%;">
+        <img src="images/IMG_10370.jpg" class="header-slide" style="object-position: 50% 30%;">
+        <img src="images/IMG_10380.jpg" class="header-slide" style="object-position: 50% 20%;">
+        <img src="images/004.jpg" class="header-slide" style="object-position: 50% 20%;">
+        <img src="images/005.jpg" class="header-slide">
+        <img src="images/006.jpg" class="header-slide" style="object-position: 50% 20%;">
+        <img src="images/IMG_20230604_120958_771.jpg" class="header-slide">
+    </div>
+    <!-- SINGLE NAV -->
+<div id="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+    <nav class="main-nav">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="index.html #About">About</a></li>
+<li><a href="index.html #portfolio">Portfolio</a></li>
+<li><a href="index.html #education">Education</a></li>
+<li><a href="index.html #experience">Experience</a></li>
+<li><a href="index.html #skills">Skills</a></li>
+<li><a href="index.html #passions">Passions & Learning</a></li>
+<li><a href="contact.html">Contact Me</a></li>
+</ul>
+</nav>
+<!-- ⭐ LOCATION BADGE -->
+    <div class="header-location">
+        <img src="icons/earth-globe-location-world-gps-map.svg" alt="">
+        <span>LOCATED IN NIGERIA</span>
+    </div>
+    
 </header>
 
-<div class="contact-page">
-<nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="contact.html">Contact Me</a></li>
-    </ul>
-</nav>
-</div>
+<!-- top nav removed; navigation is provided via the sidebar menu -->
 
 <section class="contact-form">
     <div class="container">
         <h2>Send a Message</h2>
         <form action="https://formspree.io/f/xeovolgn" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name"required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email"required>
 
             <label for="company">Company Name:</label>
             <input type="text" id="company" name="company">
@@ -51,7 +77,7 @@
             <input type="date" id="date" name="date">
 
             <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <textarea id="message" name="message" rows="6"required></textarea>
 
             <button type="submit">Send Message</button>
         </form>
@@ -70,7 +96,7 @@
 
             <div class="info-item">
                 <i class="fas fa-phone"></i>
-                <a href="tel:+2349150621357">09150621357</a>
+                <a href="tel:+2348145815105">+2348145815105</a>
             </div>
 
             <div class="info-item">
@@ -93,6 +119,98 @@
 
     </div>
 </footer>
+
+<script>
+const openMenu = document.getElementById("openMenu");
+const sidebar = document.getElementById("sidebarMenu");
+const overlay = document.getElementById("overlay");
+
+if (openMenu && sidebar && overlay) {
+    openMenu.addEventListener("click", () => {
+        sidebar.classList.add("active");
+        overlay.classList.add("show");
+    });
+
+    overlay.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("show");
+    });
+    // auto-close sidebar when a sidebar link is clicked
+    const sidebarLinks = document.querySelectorAll('.sidebar-links a');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('show');
+        });
+    });
+}
+</script>
+
+<!-- One-time hamburger hint: animate once for first-time visitors -->
+<script>
+    (function(){
+        try {
+            var key = 'menuHintShown_v1';
+            if (!localStorage.getItem(key)) {
+                var btn = document.getElementById('openMenu');
+                if (btn) {
+                    btn.classList.add('hint');
+                    setTimeout(function(){
+                        btn.classList.remove('hint');
+                        try { localStorage.setItem(key, '1'); } catch(e){}
+                    }, 1400);
+                }
+            }
+        } catch(e) {}
+    })();
+</script>
+<script>
+let headerSlides = document.querySelectorAll('.header-slide');
+let i = 0;
+
+setInterval(() => {
+    headerSlides[i].classList.remove('active');
+    i = (i + 1) % headerSlides.length;
+    headerSlides[i].classList.add('active');
+}, 4000); // 4 seconds per slide
+</script>
+<script>
+const menuToggle = document.getElementById("menu-toggle");
+const navMenu = document.querySelector(".main-nav ul");
+const navLinks = document.querySelectorAll(".main-nav ul li a");
+
+// Toggle dropdown + animate hamburger
+menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+    menuToggle.classList.toggle("active");
+});
+
+// Auto-close when clicking a menu item
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        navMenu.classList.remove("show");
+        menuToggle.classList.remove("active");
+    });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".reveal");
+
+    const revealOnScroll = () => {
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80) {
+                el.classList.add("visible");
+            }
+        });
+    };
+
+    revealOnScroll();
+    window.addEventListener("scroll", revealOnScroll);
+});
+</script>
+
 
 
 <script src="main.js"></script>

@@ -17,29 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', animateSkills);
     animateSkills(); // trigger on load
 
-    // Header slideshow
-    const header = document.querySelector('header');
-    const images = [
-        'images/Onen PhSh.jpg',
-        'images/001.jpg',
-        'images/002.jpg',
-        'images/003.jpg',
-        'images/004.jpg',
-        'images/005.jpg',
-        'images/006.jpg'
-    ];
-    let current = 0;
-
-    function changeBackground() {
-        current = (current + 1) % images.length;
-        header.style.backgroundImage = `url('${images[current]}')`;
-    }
-
-    // Set initial background
-    header.style.backgroundImage = `url('${images[0]}')`;
-
-    // Change every 6 seconds
-    setInterval(changeBackground, 6000);
+    // NOTE: header background slideshow removed — using the orange-blob slideshow inside the header instead.
 });
 
 // Helper: show lightbox
@@ -153,7 +131,7 @@ backToTopBtn.addEventListener("click", () => {
 });
 
 // Hide Back-to-Top button when lightbox opens
-const observer = new MutationObserver(() => {
+const observer1 = new MutationObserver(() => {
     if (lightboxElement.classList.contains('active')) {
         backToTopBtn.style.display = 'none';
     } else {
@@ -161,7 +139,7 @@ const observer = new MutationObserver(() => {
     }
 });
 
-observer.observe(lightboxElement, { attributes: true, attributeFilter: ['class'] });
+observer1.observe(lightboxElement, { attributes: true, attributeFilter: ['class'] });
 
 // Enable swipe functionality for slideshows on mobile
 document.querySelectorAll('.slideshow').forEach(slideshow => {
@@ -192,4 +170,33 @@ document.querySelectorAll('.slideshow').forEach(slideshow => {
             showSlide(currentIndex);
         }
     });
+});
+
+// -------- WORD-BY-WORD ABOUT TEXT ANIMATION --------
+document.addEventListener("DOMContentLoaded", () => {
+    const about = document.querySelector("#about");
+    const paragraphs = document.querySelectorAll("#about .about-text p");
+
+    paragraphs.forEach(p => {
+        let words = p.innerText.trim().split(" ");
+        p.innerHTML = ""; // clear old text
+
+        words.forEach((word, i) => {
+            let span = document.createElement("span");
+            span.classList.add("word");
+            span.innerText = word + " ";
+            span.style.transitionDelay = `${i * 60}ms`; // speed between words
+            p.appendChild(span);
+        });
+    });
+
+    // Observer to activate animation when visible
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            const allWords = about.querySelectorAll(".word");
+            allWords.forEach(w => w.classList.add("visible"));
+        }
+    }, { threshold: 0.3 });
+
+    observer.observe(about);
 });
