@@ -47,7 +47,6 @@
     cursor: pointer;
     z-index: 9999;
     padding: 6px 10px;
-    /* border: 1px solid rgba(255,255,255,0.5); */
     border-radius: 5px;
     display: none; /* hidden on large screens */
     backdrop-filter: blur(8px);
@@ -56,14 +55,14 @@
 /* Desktop Nav */
 .main-nav ul {
     display: flex;
-    gap: 17.5px;
+    gap: 25px;
     list-style: none;
     transition: 0.3s ease;
 }
 
 .main-nav ul li a {
     color: #fff;
-    font-weight: 600;
+    font-weight: 0;
     text-decoration: none;
 }
 
@@ -90,10 +89,10 @@
         width: 100%;
         height: auto;        /* full screen overlay */
         display: none;        /* hidden by default */
-        padding: 20px 0 20px ;   /* move menu items down a bit */
+        padding: 50px 0 50px 30px;   /* move menu items down a bit */
         flex-direction: column;
-        text-align: center;
-        gap: 15px;
+        text-align: left;
+        gap: 25px;
         background: rgba(0, 0, 0, 0.65); /* dark overlay */
         backdrop-filter: blur(12px);
         
@@ -113,8 +112,8 @@
 
     .main-nav ul li a {
         color: white;
-        font-size: 16px;
-        font-weight: 700;
+        font-size: 28px;
+        font-weight: 500;
         text-shadow: 0 2px 5px rgba(0,0,0,0.7);
     }
 
@@ -148,6 +147,74 @@
     height: 16px;
     opacity: 0.9;             /*cleaner transparency */
     filter: invert(1);        /* ensures icon stays white */
+}
+
+/* ===========================
+   Medium Screens (Tablets)
+=========================== */
+@media (max-width: 1024px) {
+    .header-location {
+        padding: 5px 10px;   /* shorter */
+        gap: 6px;
+        border-radius: 18px;
+        bottom: 22px;
+        left: 22px;
+    }
+
+    .header-location span {
+        font-size: 12px;
+    }
+
+    .header-location img {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+
+/* ===========================
+   Small Screens (Phones)
+=========================== */
+@media (max-width: 768px) {
+    .header-location {
+        padding: 4px 8px;   /* shorter again */
+        gap: 5px;
+        border-radius: 16px;
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .header-location span {
+        font-size: 11px;
+    }
+
+    .header-location img {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+
+/* ===========================
+   Extra Small Screens
+=========================== */
+@media (max-width: 480px) {
+    .header-location {
+        padding: 3px 6px;   /* much shorter length */
+        gap: 4px;
+        border-radius: 14px;
+        bottom: 18px;
+        left: 18px;
+    }
+
+    .header-location span {
+        font-size: 10px;
+    }
+
+    .header-location img {
+        width: 10px;
+        height: 10px;
+    }
 }
 
 @keyframes dropIn {
