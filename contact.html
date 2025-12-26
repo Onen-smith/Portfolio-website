@@ -3,212 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me - Onen Emmanuel</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" 
-      href="dark.css" 
-      media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Contact | Emmanuel</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg">
+<link rel="apple-touch-icon" href="images/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #050505; color: #ffffff; }
+        
+        /* Consistent Animations */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob { animation: blob 7s infinite; }
+        .bg-noise { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E"); }
+        
+        .glass-input {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); color: white; transition: all 0.3s ease;
+        }
+        .glass-input:focus { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.3); outline: none; }
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    
+    /* === IMPROVED AUTOFILL FIX (Glass Support) === */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        textarea:-webkit-autofill,
+        textarea:-webkit-autofill:hover,
+        textarea:-webkit-autofill:focus {
+            /* 1. Force the text to be white */
+            -webkit-text-fill-color: white !important;
+            
+            /* 2. The Time-Delay Trick: */
+            /* This tells the browser to wait 600,000 seconds before */
+            /* changing the background color to white/yellow. */
+            /* This keeps your original glass transparency intact. */
+            transition: background-color 600000s 0s, color 600000s 0s;
+        }
+    /* 1. GLOBAL RESET */
+    body { font-family: 'Space Grotesk', sans-serif; background-color: #050505; color: #ffffff; overflow-x: hidden; }
 
+    /* 2. HIDE DEFAULT CURSOR (The "Nuke" Option) */
+    /* This forces the cursor to be hidden on EVERYTHING */
+    * {
+        cursor: none !important;
+    }
+
+    /* 3. CUSTOM CURSOR STYLES */
+    #cursor-dot, #cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        pointer-events: none; /* Allows you to click through the custom cursor */
+        z-index: 9999;
+        mix-blend-mode: difference; /* Ensures visibility on light/dark backgrounds */
+    }
+
+    /* The Inner Dot */
+    #cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: white;
+    }
+
+    /* The Outer Ring */
+    #cursor-ring {
+        width: 40px;
+        height: 40px;
+        border: 1px solid white;
+        transition: width 0.2s, height 0.2s, background-color 0.2s;
+    }
+
+    /* Hover State (Ring Expands) */
+    #cursor-ring.active {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: transparent;
+    }
+
+    /* === PRELOADER CURTAIN === */
+    #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background-color: #050505; /* Matches your background */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1); /* Cinematic ease */
+    }
+
+    /* When the site is loaded, this class slides the curtain up */
+    #preloader.loaded {
+        transform: translateY(-100%);
+    }
+
+    /* Logo Animation */
+    .preloader-logo {
+        width: 80px; /* Larger version of logo */
+        height: auto;
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: logoFade 1s ease forwards;
+    }
+
+    @keyframes logoFade {
+        0% { opacity: 0; transform: scale(0.9); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Keep your existing animations below... */
+    @keyframes blob { 0% { transform: translate(0px, 0px) scale(1); } 33% { transform: translate(30px, -50px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } 100% { transform: translate(0px, 0px) scale(1); } }
+    .animate-blob { animation: blob 7s infinite; }
+    .animate-scroll { animation: scroll 15s linear infinite; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .bento-card { transition: all 0.1s ease; transform-style: preserve-3d; transform: perspective(1000px); backdrop-filter: blur(10px); }
+    .content-float { transform: translateZ(30px); }
+    </style>
 </head>
-<body>
-    
-<header>
-    <div class="site-name">EMMANUEL ONEN<span class="reg">&reg;</span></div>
-
-     <div class="container">
-        <h1>Contact Me</h1>
-        <p>Get in touch for projects or collaborations</p>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 relative">
+    <div id="preloader">
+        <img src="images/logo.svg" alt="Loading..." class="preloader-logo">
     </div>
-        <!-- Background slideshow -->
-    <!-- Slideshow -->
-    <div class="header-slideshow">
-        <img src="images/NEF_2054.jpg" class="header-slide active" style="object-position: 50% 20%;">
-        <img src="images/IMG_10370.jpg" class="header-slide" style="object-position: 50% 30%;">
-        <img src="images/IMG_10380.jpg" class="header-slide" style="object-position: 50% 20%;">
-        <img src="images/004.jpg" class="header-slide" style="object-position: 50% 20%;">
-        <img src="images/005.jpg" class="header-slide">
-        <img src="images/006.jpg" class="header-slide" style="object-position: 50% 20%;">
-        <img src="images/IMG_20230604_120958_771.jpg" class="header-slide">
+<div id="cursor-dot" class="cursor-dot hidden md:block"></div>
+<div id="cursor-ring" class="cursor-ring hidden md:block"></div>
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none bg-black">
+        <div class="absolute top-0 left-[-10%] w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
+        <div class="absolute bottom-0 right-[-10%] w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
+        <div class="absolute inset-0 w-full h-full bg-noise opacity-[0.07]"></div>
     </div>
-    <!-- SINGLE NAV -->
-<div id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-    <nav class="main-nav">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="index.html #portfolio">Projects</a></li>
-<li><a href="index.html #experience">Experience</a></li>
-<li><a href="contact.html">Contact Me</a></li>
-</ul>
-</nav>
-<!-- ⭐ LOCATION BADGE -->
-    <div class="header-location">
-        <img src="icons/earth-globe-location-world-gps-map.svg" alt="">
-        <span>LOCATED IN NIGERIA</span>
-    </div>
-    
-</header>
 
-<!-- top nav removed; navigation is provided via the sidebar menu -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-neutral-900/60 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 flex items-center gap-8 shadow-2xl">
+        <a href="index.html" class="flex items-center">
+            <img src="images/logo.svg" alt="Emmanuel Logo" class="h-8 w-auto object-contain hover:opacity-80 transition">
+        </a>
 
-<section class="contact-form">
-    <div class="container">
-        <h2>Send a Message</h2>
-        <form action="https://formspree.io/f/xeovolgn" method="POST">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name"required>
+        <div class="h-4 w-px bg-white/20"></div>
+        <div class="flex gap-6">
+            <a href="index.html" class="text-sm text-neutral-400 hover:text-white transition">Home</a>
+            <a href="index.html#work" class="text-sm text-neutral-400 hover:text-white transition">Work</a>
+        </div>
+        <span class="hidden md:block bg-white/10 text-white text-xs font-bold px-4 py-2 rounded-full cursor-default">Contact</span>
+    </nav>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"required>
+    <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 pt-20">
+        
+        <div class="flex flex-col justify-center p-8">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Let's start a <br /><span class="text-purple-500">project.</span></h1>
+            <p class="text-xl text-neutral-400 mb-12 max-w-md">
+                Interested in working together? Drop me a line and let's turn your concept into reality.
+            </p>
 
-            <label for="company">Company Name:</label>
-            <input type="text" id="company" name="company">
-
-            <label for="date">Select a Date:</label>
-            <input type="date" id="date" name="date">
-
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="6"required></textarea>
-
-            <button type="submit">Send Message</button>
-        </form>
-
-    </div>
-</section>
-
-<footer class="footer">
-    <div class="footer-content">
-
-        <div class="Ending-page">
-            <div class="info-item">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:onene244@gmail.com">onene244@gmail.com</a>
-            </div>
-
-            <div class="info-item">
-                <i class="fas fa-phone"></i>
-                <a href="tel:+2348145815105">+2348145815105</a>
-            </div>
-
-            <div class="info-item">
-                <i class="fas fa-location-dot"></i>
-                <span>Calabar, Cross River, Nigeria</span>
+            <div class="space-y-6">
+                <a href="mailto:onene244@gmail.com" class="flex items-center gap-4 group cursor-pointer relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-neutral-500">Email</p>
+                        <p class="text-lg font-medium group-hover:text-white transition">onene244@gmail.com</p>
+                    </div>
+                </a>
+                
+                <a href="https://twitter.com/@OnenEmmanu93619" target="_blank" class="flex items-center gap-4 group cursor-pointer relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-blue-400 group-hover:text-white transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-neutral-500">Twitter</p>
+                        <p class="text-lg font-medium group-hover:text-white transition">@OnenEmmanu93619</p>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <!-- Social Media Icons -->
-        <div class="social-links">
-            <a href="https://youtube.com" title="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://twitter.com" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://tiktok.com" title="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61584494315486" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <div class="bg-neutral-900/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12">
+            <form action="https://formspree.io/f/xeovolgn" method="POST" class="space-y-6">
+                
+                <div class="space-y-2">
+                    <label class="text-sm text-neutral-400 ml-1">What's your name?</label>
+                    <input type="text" name="name" placeholder="Emma Ojeje" class="w-full rounded-xl px-4 py-4 glass-input text-lg placeholder-neutral-600" required>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="text-sm text-neutral-400 ml-1">What's your email?</label>
+                    <input type="email" name="email" placeholder="emma@company.com" class="w-full rounded-xl px-4 py-4 glass-input text-lg placeholder-neutral-600" required>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="text-sm text-neutral-400 ml-1">Tell me about the project</label>
+                    <textarea name="message" rows="4" placeholder="I need a new portfolio..." class="w-full rounded-xl px-4 py-4 glass-input text-lg placeholder-neutral-600 resize-none" required></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-white text-black font-bold text-lg py-4 rounded-xl hover:bg-neutral-200 transition transform hover:scale-[1.02] active:scale-[0.98]">
+                    Send Message
+                </button>
+            </form>
         </div>
 
-        <p class="copyright">© 2025 Onen Emmanuel. All Rights Reserved.</p>
-
     </div>
-</footer>
 
-<script>
-const openMenu = document.getElementById("openMenu");
-const sidebar = document.getElementById("sidebarMenu");
-const overlay = document.getElementById("overlay");
-
-if (openMenu && sidebar && overlay) {
-    openMenu.addEventListener("click", () => {
-        sidebar.classList.add("active");
-        overlay.classList.add("show");
+    <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    
+    // 1. Move Cursor
+    document.addEventListener('mousemove', (e) => {
+        // Dot moves instantly
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+        
+        // Ring moves instantly too (or you can add a slight delay logic here if preferred)
+        // For "Dot inside Ring", keeping them synced is usually cleaner:
+        ring.style.left = e.clientX + 'px';
+        ring.style.top = e.clientY + 'px';
     });
 
-    overlay.addEventListener("click", () => {
-        sidebar.classList.remove("active");
-        overlay.classList.remove("show");
-    });
-    // auto-close sidebar when a sidebar link is clicked
-    const sidebarLinks = document.querySelectorAll('.sidebar-links a');
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('show');
+    // 2. Add Hover Effect (Expand Ring)
+    const hoverElements = document.querySelectorAll('a, button, .bento-card, .project-card, input, textarea');
+
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            ring.classList.add('active'); // Ring gets bigger
+        });
+        el.addEventListener('mouseleave', () => {
+            ring.classList.remove('active'); // Ring shrinks back
         });
     });
-}
-</script>
 
-<!-- One-time hamburger hint: animate once for first-time visitors -->
-<script>
-    (function(){
-        try {
-            var key = 'menuHintShown_v1';
-            if (!localStorage.getItem(key)) {
-                var btn = document.getElementById('openMenu');
-                if (btn) {
-                    btn.classList.add('hint');
-                    setTimeout(function(){
-                        btn.classList.remove('hint');
-                        try { localStorage.setItem(key, '1'); } catch(e){}
-                    }, 1400);
-                }
-            }
-        } catch(e) {}
-    })();
-</script>
-<script>
-let headerSlides = document.querySelectorAll('.header-slide');
-let i = 0;
-
-setInterval(() => {
-    headerSlides[i].classList.remove('active');
-    i = (i + 1) % headerSlides.length;
-    headerSlides[i].classList.add('active');
-}, 4000); // 4 seconds per slide
-</script>
-<script>
-const menuToggle = document.getElementById("menu-toggle");
-const navMenu = document.querySelector(".main-nav ul");
-const navLinks = document.querySelectorAll(".main-nav ul li a");
-
-// Toggle dropdown + animate hamburger
-menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("show");
-    menuToggle.classList.toggle("active");
-});
-
-// Auto-close when clicking a menu item
-navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-        navMenu.classList.remove("show");
-        menuToggle.classList.remove("active");
+    // 3. Hide cursor when leaving the window (optional polish)
+    document.addEventListener('mouseout', () => {
+        dot.style.opacity = '0';
+        ring.style.opacity = '0';
     });
-});
+    document.addEventListener('mouseover', () => {
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+    });
+
+    /* === PRELOADER SCRIPT === */
+    window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        
+        // Small delay to ensure the animation plays at least once
+        setTimeout(() => {
+            preloader.classList.add("loaded");
+            
+            // Optional: Remove it from DOM completely after animation is done to save memory
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 1000); 
+        }, 500); // Waits 1.5 seconds before opening
+    });
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll(".reveal");
-
-    const revealOnScroll = () => {
-        elements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 80) {
-                el.classList.add("visible");
-            }
-        });
-    };
-
-    revealOnScroll();
-    window.addEventListener("scroll", revealOnScroll);
-});
-</script>
-
-
-
-<script src="main.js"></script>
 </body>
 </html>
