@@ -85,19 +85,22 @@
         <div class="absolute inset-0 w-full h-full bg-noise opacity-[0.07]"></div>
     </div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-neutral-900/60 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 flex items-center gap-8 shadow-2xl">
-        <a href="index.html" class="flex items-center">
-            <img src="images/logo.svg" alt="Emmanuel Logo" class="h-8 w-auto object-contain hover:opacity-80 transition">
+    <nav class="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-neutral-900/80 backdrop-blur-md border border-white/10 rounded-full px-4 py-2.5 flex items-center gap-3 md:gap-8 shadow-2xl w-max max-w-[92%]">
+        
+        <a href="index.html" class="flex-shrink-0 flex items-center">
+            <img src="images/logo.svg" alt="Emmanuel Logo" class="w-6 h-6 md:w-8 md:h-8 object-contain hover:opacity-80 transition">
         </a>
 
-        <div class="h-4 w-px bg-white/20"></div>
-        <div class="flex gap-6">
-            <a href="index.html" class="text-sm text-neutral-400 hover:text-white transition">Home</a>
-            <span class="text-sm text-white font-medium cursor-default">Work</span>
-            <a href="experience.html" class="text-sm text-neutral-400 hover:text-white transition">Experience</a>
+        <div class="h-4 w-px bg-white/20 flex-shrink-0"></div>
+
+        <div class="flex gap-4 md:gap-6 flex-shrink-0">
+            <a href="projects.html" class="text-xs md:text-sm text-neutral-400 hover:text-white transition font-medium">Work</a>
+            <a href="index.html#experience" class="text-xs md:text-sm text-neutral-400 hover:text-white transition font-medium">Experience</a>
         </div>
+        
         <div class="h-4 w-px bg-white/20 hidden md:block"></div>
-        <a href="contact.html" class="hidden md:block bg-white text-black text-xs font-bold px-4 py-2 rounded-full hover:bg-neutral-200 transition">Let's Talk</a>
+        
+        <a href="contact.html" class="hidden md:block bg-white text-black text-xs font-bold px-4 py-2 rounded-full hover:bg-neutral-200 transition flex-shrink-0">Let's Talk</a>
     </nav>
 
     <div class="max-w-6xl w-full mt-10 mb-20 text-center">
@@ -204,6 +207,46 @@
             <a href="contact.html" class="inline-block bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition">Start a Project</a>
         </div>
     </div>
+
+    <footer class="w-full border-t border-white/10 bg-black pt-12 pb-8 mt-20">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                
+                <div class="text-center md:text-left">
+                    <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">Emmanuel Onen</h2>
+                    <p class="text-neutral-500 text-sm">Building digital experiences that matter.</p>
+                </div>
+
+                <div class="flex gap-8 text-sm font-medium">
+                    <a href="index.html" class="text-neutral-400 hover:text-white transition">Home</a>
+                    <a href="projects.html" class="text-neutral-400 hover:text-white transition">Work</a>
+                    <a href="contact.html" class="text-neutral-400 hover:text-white transition">Contact</a>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="https://github.com/Onen-smith" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+
+                    <a href="https://www.instagram.com/emmanuel_ojeje?igsh=MWxnZHRlb3UzZmFvdA==" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+
+                    <a href="https://twitter.com/@OnenEmmanu93619" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-neutral-600 text-xs">© 2024 Emmanuel Onen. All rights reserved.</p>
+                <p class="text-neutral-700 text-xs flex items-center gap-1">
+                    Designed in Nigeria <span class="text-green-500">●</span>
+                </p>
+            </div>
+        </div>
+    </footer>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script>
