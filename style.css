@@ -1,0 +1,414 @@
+:root {
+    --bg: #050505; /* Deep Black */
+    --surface: #0a0a0a;
+    --text-main: #ffffff;
+    --text-muted: #888888;
+    --accent: #ffffff; /* Clean White Accent */
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-head: 'Space Grotesk', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { 
+    background: var(--bg); 
+    color: var(--text-main); 
+    font-family: var(--font-body); 
+    overflow-x: hidden; 
+    cursor: none; 
+    
+    /* 1. MAKE TEXT SMOOTH & CRISP */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* 2. PREMIUM HEADINGS (Tighten the spacing) */
+h1, h2, h3, .hero-title, .section-title {
+    font-family: var(--font-head);
+    /* Space Grotesk looks "loose" by default. This makes it look solid. */
+    letter-spacing: -0.03em; 
+    font-weight: 700;
+}
+
+/* 3. HERO TITLE SPECIFIC */
+.hero-title {
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    line-height: 1.05; /* Tighter line height for large text */
+    letter-spacing: -0.04em; /* Squeeze it more for impact */
+    margin-bottom: 25px;
+}
+
+/* 4. BODY TEXT READABILITY */
+p, .hero-sub, .bento-info p {
+    letter-spacing: 0.01em; /* Slight breathing room for small text */
+    line-height: 1.6;
+}
+/* === CUSTOM CURSOR === */
+.cursor-dot, .cursor-outline {
+    position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+    border-radius: 50%; z-index: 9999; pointer-events: none;
+}
+.cursor-dot { width: 6px; height: 6px; background: white; }
+.cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.3); transition: transform 0.1s; }
+
+/* === NAVIGATION === */
+.glass-nav {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    width: 92%; max-width: 1400px; padding: 15px 30px;
+    background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border); border-radius: 100px;
+    display: flex; justify-content: space-between; align-items: center; z-index: 100;
+}
+
+.nav-left { display: flex; align-items: center; gap: 20px; }
+* Update your existing .logo class */
+.logo {
+    display: flex; /* Ensures image aligns correctly */
+    align-items: center;
+    /* Removed font styles since you are using an image now */
+}
+
+/* New class for the image itself */
+.logo-img {
+    height: 40px; /* Fits perfectly inside your glass nav */
+    width: auto;  /* Keeps the shape correct */
+    display: block;
+}
+/* Location Badge */
+.location-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.05); padding: 6px 14px;
+    border-radius: 20px; font-size: 0.75rem; color: var(--text-muted);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.pulsing-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; }
+
+.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+.nav-link:hover { color: white; }
+.nav-link.active { color: white; }
+
+.cta-button {
+    background: white; color: black; padding: 10px 24px; border-radius: 30px;
+    font-weight: 600; text-decoration: none; font-size: 0.85rem; transition: transform 0.2s;
+}
+.cta-button:hover { transform: scale(1.05); }
+
+
+
+/* ==============================
+   === HERO SECTION (SPLIT - FIXED) ===
+   ============================== */
+header {
+    height: 100vh;
+    min-height: 700px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 80px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Give Text slightly more space */
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- LEFT COLUMN (Text) --- */
+.hero-content-col {
+    z-index: 10; /* Ensure text is above everything */
+    padding-left: 20px;
+    position: relative;
+}
+
+.hero-title {
+    text-align: left;
+    font-family: var(--font-head);
+    font-size: clamp(3.5rem, 6vw, 6rem); /* Made slightly larger */
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: white; /* Force white color */
+    visibility: visible; /* Safety check */
+}
+
+.hero-sub {
+    text-align: left;
+    margin: 0;
+    max-width: 450px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.hero-btns {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+/* --- RIGHT COLUMN (Visual) --- */
+.hero-visual-col {
+    position: relative;
+    height: 85%; 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5%; 
+}
+
+/* The Mask Container */
+.visual-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden; /* This hides the image before it slides in */
+}
+
+/* The Image Wrapper */
+.hero-img-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    /* Start completely pushed to the right */
+    transform: translateX(100%); 
+    will-change: transform;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    /* Start zoomed in for cinematic effect */
+    transform: scale(1.3); 
+}
+
+/* Mobile Adjustments */
+@media (max-width: 900px) {
+    .hero-visual-col {
+        padding-right: 0;
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+.scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.5; }
+.scroll-indicator .line { width: 1px; height: 40px; background: white; }
+
+/* Status Badge */
+.status-badge-pill {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: rgba(20, 20, 25, 0.6); backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 20px; border-radius: 50px;
+    font-size: 1rem; color: #ffffff; font-weight: 500;
+    margin-bottom: 35px; width: fit-content;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.status-icon { color: #6366f1; font-size: 1.1rem; }
+
+/* === SECTIONS === */
+.section-padding { padding: 120px 0; }
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; }
+.section-title { font-family: var(--font-head); font-size: 3rem; }
+.link-arrow { color: white; text-decoration: none; border-bottom: 1px solid white; padding-bottom: 4px; }
+
+/* === MARQUEE === */
+.skills-marquee-wrapper {
+    background: var(--surface); padding: 30px 0; overflow: hidden;
+    border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);
+}
+.skills-track { display: flex; gap: 50px; white-space: nowrap; animation: marquee 20s linear infinite; }
+.skills-track span { font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: var(--text-muted); }
+.skills-track .divider { color: var(--glass-border); } 
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* === EXPERIENCE LIST === */
+.experience-list { border-top: 1px solid var(--glass-border); }
+.experience-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 30px 0; border-bottom: 1px solid var(--glass-border);
+    transition: background 0.3s;
+}
+.experience-row:hover { background: rgba(255,255,255,0.02); padding-left: 10px; padding-right: 10px; }
+.exp-role { font-family: var(--font-head); font-size: 1.5rem; color: white; flex: 1; }
+.exp-company { font-size: 1rem; color: var(--text-muted); flex: 1; }
+.exp-date { font-size: 0.9rem; color: var(--text-muted); text-align: right; }
+
+/* style.css */
+
+/* === BENTO GRID (Interactive 3D) === */
+.bento-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    grid-auto-rows: 350px; 
+    perspective: 1000px; /* Essential for 3D effect */
+}
+
+.bento-item { 
+    position: relative; 
+    border-radius: 12px; 
+    transform-style: preserve-3d; /* Allows children to float in 3D */
+    transform: perspective(1000px);
+    will-change: transform;
+}
+/* Update the .bento-card class */
+.bento-card {
+    transition: all 0.1s ease; /* Faster transition for smoother tilt */
+    transform-style: preserve-3d; /* Key for 3D depth */
+    transform: perspective(1000px);
+}
+
+/* Add this new class for floating content */
+.content-float {
+    transform: translateZ(20px); /* Pushes text 20px toward the user */
+}
+.bento-item.large { grid-column: span 2; }
+.bento-item.medium { grid-column: span 1; }
+
+.glass-card { 
+    background: var(--glass); 
+    border: 1px solid var(--glass-border); 
+    /* We handle transform in JS now, removing basic hover */
+}
+
+/* The Content Wrapper (Keeps text above glare) */
+.card-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: 12px;
+    overflow: hidden;
+    transform: translateZ(20px); /* Pushes content slightly forward */
+}
+
+/* The Glare Effect (Shiny Overlay) */
+.card-glare {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(
+        circle at 50% 50%, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 100%
+    );
+    opacity: 0;
+    z-index: 3; /* On top of image, below text if you want */
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    transition: opacity 0.3s;
+}
+
+/* Standard Images styles */
+.bento-img-wrap { width: 100%; height: 100%; }
+.bento-img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+.bento-item:hover .bento-img-wrap img { transform: scale(1.1); opacity: 1; }
+
+.bento-info { position: absolute; bottom: 20px; left: 20px; z-index: 4; pointer-events: none; }
+.bento-info h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.bento-info p { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* Mobile */
+@media (max-width: 900px) {
+    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 300px; }
+    .bento-item.large, .bento-item.medium { grid-column: span 1; }
+}
+
+/* === FOOTER === */
+.glass-footer { padding: 100px 0 50px; background: var(--surface); border-top: 1px solid var(--glass-border); }
+.footer-flex { display: flex; justify-content: space-between; align-items: flex-end; }
+.footer-left h2 { font-family: var(--font-head); font-size: 4rem; line-height: 1; margin-bottom: 30px; }
+.email-link { font-size: 1.2rem; color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--glass-border); transition: 0.3s; }
+.email-link:hover { color: white; border-color: white; }
+.social-list { display: flex; flex-direction: column; gap: 10px; text-align: right; margin-bottom: 20px; }
+.social-list a { color: var(--text-muted); text-decoration: none; }
+.social-list a:hover { color: white; }
+
+/* Mobile */
+@media (max-width: 900px) {
+    .desktop-only { display: none; }
+    .hero-title { font-size: 3.5rem; }
+    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: 300px; }
+    .bento-item.large, .bento-item.medium { grid-column: span 1; }
+    .experience-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .footer-flex { flex-direction: column; gap: 50px; align-items: flex-start; }
+    .social-list { text-align: left; }
+    #menu-toggle { display: block; color: white; cursor: pointer; }
+}
+
+/* Mobile Overlay */
+.mobile-menu-overlay { position: fixed; inset: 0; background: black; z-index: 99; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: 0.3s; }
+.mobile-menu-overlay.active { opacity: 1; pointer-events: all; }
+.mobile-links { display: flex; flex-direction: column; gap: 30px; text-align: center; }
+.mobile-links a { font-size: 2rem; color: white; text-decoration: none; font-family: var(--font-head); }
+
+/* === CONTACT PAGE STYLES === */
+.contact-section { min-height: 100vh; display: flex; align-items: center; padding-top: 140px; padding-bottom: 80px; }
+.grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact-details { margin-top: 60px; display: flex; flex-direction: column; gap: 40px; }
+.detail-item .label { display: block; font-size: 0.75rem; color: var(--text-muted); letter-spacing: 2px; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; }
+.detail-item .link { font-size: 1.5rem; color: white; text-decoration: none; font-family: var(--font-head); border-bottom: 1px solid transparent; transition: 0.3s; }
+.detail-item .link:hover { border-bottom-color: white; }
+.social-row { font-size: 1.1rem; color: var(--text-muted); }
+.social-row a { color: white; text-decoration: none; transition: 0.3s; }
+.social-row a:hover { color: var(--text-muted); }
+
+/* Minimalist Form */
+.form-minimal { margin-top: 10px; }
+.form-group { margin-bottom: 50px; }
+.form-group label { display: block; margin-bottom: 15px; color: var(--text-muted); font-size: 0.9rem; font-family: var(--font-head); }
+.form-minimal input, .form-minimal textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--glass-border); color: white; padding: 10px 0; font-size: 1.25rem; font-family: var(--font-body); outline: none; transition: border-color 0.3s; border-radius: 0; }
+.form-minimal input:focus, .form-minimal textarea:focus { border-bottom-color: white; }
+.submit-btn-line { background: transparent; color: white; border: none; font-size: 1.5rem; font-family: var(--font-head); cursor: pointer; padding: 0; display: flex; align-items: center; gap: 15px; transition: gap 0.3s; }
+.submit-btn-line:hover { gap: 25px; }
+
+@media (max-width: 900px) {
+    .grid-layout { grid-template-columns: 1fr; gap: 60px; }
+    .contact-section { padding-top: 120px; }
+}
+
+/* === PROJECT ARCHIVE PAGE === */
+.archive-header { padding-top: 180px; padding-bottom: 80px; border-bottom: 1px solid var(--glass-border); }
+.archive-grid-section { padding: 80px 0; }
+.archive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px 40px; }
+.archive-item { cursor: pointer; }
+.archive-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; position: relative; margin-bottom: 20px; }
+.archive-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.archive-item:hover .archive-img-wrap img { transform: scale(1.05); }
+.overlay-badge { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); padding: 5px 10px; border-radius: 20px; font-size: 0.75rem; color: white; border: 1px solid rgba(255,255,255,0.1); }
+.archive-info h3 { font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 5px; color: white; }
+.archive-info p { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+@media (max-width: 768px) {
+    .archive-grid { grid-template-columns: 1fr; gap: 50px; }
+    .archive-header { padding-top: 140px; }
+}
+
+
+/* === PAGE TRANSITION CURTAIN === */
+.app-curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 105vh; 
+    background-color: #000000;
+    z-index: 99999;
+    pointer-events: none; /* Let clicks pass through if opacity is 0 */
+    
+    /* Default: Covers the screen */
+    transform: translateY(0%); 
+    will-change: transform;
+}

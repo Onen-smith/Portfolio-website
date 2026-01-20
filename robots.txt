@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://onen-emmanuel-portfolio-site.onrender.com/sitemap.xml
